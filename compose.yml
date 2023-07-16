@@ -4,24 +4,16 @@ services:
     container_name: app
     build: ./docker/php
     volumes:
-      - ./laravel-project:/var/www
-  websockets:
-    build: ./docker/php
-    container_name: websockets
-    volumes:
-      - ./laravel-project:/var/www
-    command: php artisan websockets:serve
-    depends_on:
-      - app
+      - .:/var/www/html:cached
+    working_dir: /var/www
   nginx:
-    image: nginx
+    image: nginx:latest
     container_name: nginx
     ports:
       - 8000:80
     volumes:
-      - ./laravel-project:/var/www
+      - .:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    working_dir: /var/www
     depends_on:
       - app
   db:
