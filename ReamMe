@@ -1,0 +1,6 @@
+
+composer install
+compser update
+
+
+php artisan key:generate

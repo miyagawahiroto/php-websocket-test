@@ -4,10 +4,10 @@ services:
     container_name: app
     build: ./docker/php
     volumes:
-      - .:/var/www/html:cached
+      - .:/var/www
     working_dir: /var/www
   nginx:
-    image: nginx:latest
+    image: nginx
     container_name: nginx
     ports:
       - 8000:80
